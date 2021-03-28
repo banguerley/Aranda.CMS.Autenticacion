@@ -1,0 +1,62 @@
+﻿@model IEnumerable<CMS.Authentication.Models.RolViewModel>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml"; ;
+}
+
+
+<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myModalLabel">Listado de Permisos</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="modal-content">
+                    Cargando ...
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="jumbotron">
+    <h2>Listado de Roles Configurados</h2>
+</div>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NombreRol)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreRol)
+            </td>
+            <td>
+                <a name="btnPermiso" data-id=@item.Id data-toggle="modal" href="#myModal" class="btn btn-primary">Permisos</a>
+
+            </td>
+        </tr>
+    }
+
+</table>
+
+@section scripts
+{
+
+    <script src="~/Scripts/permiso.js"></script>
+}

@@ -1,0 +1,77 @@
+﻿@model CMS.Authentication.Models.UsuarioViewModel
+
+@{
+    ViewBag.Title = "Información Usuario Sistema";
+}
+
+<div class="jumbotron">
+    <h2>Usuario Registrado</h2>    
+</div>
+
+<div class="block-info text-align" style="text-align: left;">
+
+    <div class="row">
+        <div class="col-md-4">
+            <label> Nombre: </label>
+        </div>
+        <div class="col-md-4">
+            @Model.Nombre
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <label> Nombres Completos: </label>
+        </div>
+        <div class="col-md-4">
+            @Model.NombreCompleto
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <label> Dirección: </label>
+        </div>
+        <div class="col-md-4">
+            @Model.Direccion
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <label> Télefono: </label>
+        </div>
+        <div class="col-md-4">
+            @Model.Telefono
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <label> Email: </label>
+        </div>
+        <div class="col-md-4">
+            @Model.Email
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <label> Edad: </label>
+        </div>
+        <div class="col-md-4">
+            @Model.Edad
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <label> Rol: </label>
+        </div>
+        <div class="col-md-4">
+            @Model.Rol.NombreRol
+        </div>
+    </div>
+
+</div>
+

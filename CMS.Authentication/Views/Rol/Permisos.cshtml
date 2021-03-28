@@ -1,0 +1,34 @@
+﻿@model IEnumerable<CMS.Authentication.Models.PermisoViewModel>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Permisos</title>
+</head>
+<body>
+  
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NomPermiso)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomPermiso)
+            </td>          
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

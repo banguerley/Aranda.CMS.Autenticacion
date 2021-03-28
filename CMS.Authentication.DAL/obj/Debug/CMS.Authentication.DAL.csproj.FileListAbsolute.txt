@@ -1,0 +1,14 @@
+C:\Proyectos\MVC\CMS\CMS.Authentication.DAL\bin\Debug\CMS.Authentication.DAL.dll.config
+C:\Proyectos\MVC\CMS\CMS.Authentication.DAL\bin\Debug\CMS.Authentication.DAL.dll
+C:\Proyectos\MVC\CMS\CMS.Authentication.DAL\bin\Debug\CMS.Authentication.DAL.pdb
+C:\Proyectos\MVC\CMS\CMS.Authentication.DAL\bin\Debug\EntityFramework.dll
+C:\Proyectos\MVC\CMS\CMS.Authentication.DAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Proyectos\MVC\CMS\CMS.Authentication.DAL\bin\Debug\EntityFramework.xml
+C:\Proyectos\MVC\CMS\CMS.Authentication.DAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Proyectos\MVC\CMS\CMS.Authentication.DAL\obj\Debug\CMS.Authentication.DAL.csprojAssemblyReference.cache
+C:\Proyectos\MVC\CMS\CMS.Authentication.DAL\obj\Debug\CMS.Authentication.DAL.csproj.CoreCompileInputs.cache
+C:\Proyectos\MVC\CMS\CMS.Authentication.DAL\obj\Debug\CMS.Authentication.DAL.csproj.CopyComplete
+C:\Proyectos\MVC\CMS\CMS.Authentication.DAL\obj\Debug\CMS.Authentication.DAL.dll
+C:\Proyectos\MVC\CMS\CMS.Authentication.DAL\obj\Debug\CMS.Authentication.DAL.pdb
+C:\Proyectos\MVC\CMS\CMS.Authentication.DAL\bin\Debug\Newtonsoft.Json.dll
+C:\Proyectos\MVC\CMS\CMS.Authentication.DAL\bin\Debug\Newtonsoft.Json.xml
