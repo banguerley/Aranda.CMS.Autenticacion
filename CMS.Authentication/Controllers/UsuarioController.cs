@@ -1,4 +1,9 @@
-﻿using System;
+﻿using AutoMapper;
+using CMS.Authentication.Core;
+using CMS.Authentication.DAL;
+using CMS.Authentication.Models;
+using CMS.Authentication.Util;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -6,19 +11,49 @@ using System.Web.Mvc;
 
 namespace CMS.Authentication.Controllers
 {
-    public class UsuarioController : Controller
+    public class UsuarioController : ControllerBase
     {
-        // GET: Usuario
-        public ActionResult Index()
+
+        #region Atributos y Propiedades
+
+        private readonly UsuarioManager usuarioManager;
+        private readonly RolManager rolManager;
+
+        #endregion
+
+
+        #region Constructor de la clase
+
+        public UsuarioController()
         {
-            return View();
+            usuarioManager = new UsuarioManager();
+            rolManager = new RolManager();
+        }
+        #endregion
+
+        // GET: Usuario
+        public ActionResult Index(int? id)
+        {
+            PermisosMenu();
+
+            if (UsuarioActual == null)
+                return RedirectToAction("Index", "Login");
+
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<Usuario, UsuarioViewModel>();
+                cfg.CreateMap<Rol, RolViewModel>();
+            });
+
+            ViewBag.PermisoFiltrarRol = TienePermisos(PERMISOS.USUARIOS_FILTRO_ROL);
+            ViewBag.PermisoEditar = TienePermisos(PERMISOS.USUARIOS_EDITAR);
+            ViewBag.ListaRoles = new SelectList(rolManager.GetAll(), "Id", "NombreRol", "Id");
+            
+            var lista = MapService<Usuario, UsuarioViewModel>.MapList(config, usuarioManager.GetAll(id));
+            return View(lista);
         }
 
-        // GET: Usuario/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
+        
 
         // GET: Usuario/Create
         public ActionResult Create()
@@ -45,21 +80,45 @@ namespace CMS.Authentication.Controllers
         // GET: Usuario/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            PermisosMenu();
+
+            var usuario = usuarioManager.Get(id);
+
+            if (usuario == null)
+                return View("Index");
+
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<Usuario, UsuarioViewModel>();
+                cfg.CreateMap<Rol, RolViewModel>();
+            });
+            ViewBag.ListaRoles = new SelectList(rolManager.GetAll(), "Id", "NombreRol", "Id");
+
+            return View(MapService<Usuario, UsuarioViewModel>.Map(config, usuario));
         }
 
         // POST: Usuario/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, UsuarioViewModel modelo)
         {
             try
             {
-                // TODO: Add update logic here
+
+                var config = new MapperConfiguration(cfg =>
+                {
+                    cfg.CreateMap<UsuarioViewModel, Usuario>();
+                   // cfg.CreateMap<Rol, RolViewModel>();
+                });
+
+                var usuario = MapService<UsuarioViewModel, Usuario>.Map(config, modelo);
+                usuarioManager.Update(usuario);
 
                 return RedirectToAction("Index");
             }
-            catch
+            catch(Exception ex)
             {
+                ViewBag.Error = ex.Message;
+                ViewBag.ListaRoles = new SelectList(rolManager.GetAll(), "Id", "NombreRol", "Id");
                 return View();
             }
         }

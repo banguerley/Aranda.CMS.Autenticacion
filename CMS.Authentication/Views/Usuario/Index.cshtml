@@ -1,0 +1,92 @@
+﻿@model IEnumerable<CMS.Authentication.Models.UsuarioViewModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Listado de Usuarios</h2>
+
+
+<table class="table">
+    @if (ViewBag.PermisoFiltrarRol)
+    {
+    <tr>
+        <td>
+            Filtrar:
+        </td>
+        <td>
+            @Html.DropDownList("Roles",
+                   (IEnumerable<SelectListItem>)ViewBag.ListaRoles,
+                     "Seleccione el rol",
+                     new
+                     {
+                         @class = "form-control",
+                         onchange = "document.location.href = '/Usuario/Index/' + this.options[this.selectedIndex].value;"
+                     })
+           
+        </td>
+    </tr>
+    }
+</table>
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Password)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreCompleto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Direccion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telefono)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Edad)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Password)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreCompleto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Direccion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Telefono)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Edad)
+                </td>
+                <td>
+                    @if (ViewBag.PermisoEditar)
+                    {
+                     @Html.ActionLink("Editar", "Edit", new { id = item.Id })
+                    }
+                </td>
+            </tr>
+        }
+
+    </table>

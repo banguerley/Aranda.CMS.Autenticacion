@@ -33,7 +33,7 @@ namespace CMS.Authentication.Controllers
             if (request == null)
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
 
-            var usuario = usuarioManager.Get(request.Usuario, request.Password);
+            var usuario = usuarioManager.Authenticate(request.Usuario, request.Password);
 
             if (usuario != null)
             {

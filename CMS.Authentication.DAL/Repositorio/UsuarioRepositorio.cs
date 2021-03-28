@@ -27,7 +27,7 @@ namespace CMS.Authentication.DAL.Repositorio
         #region Metodos de la clase
         public override IQueryable<Usuario> GetAll()
         {
-            return base.GetAll()
+            return base.GetAll().AsNoTracking()
             .Include(reg => reg.Rol);         
         }
 

@@ -22,7 +22,16 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Roles", "Index", "Rol")</li>
+                    @if (ViewBag.MenuUsuarios)
+                    {
+                        <li>@Html.ActionLink("Usuarios", "Index", "Usuario")</li>
+                        <li>@Html.ActionLink("Roles", "Index", "Rol")</li>
+
+                    }
+                    @if (ViewBag.MenuNoticias)
+                    { 
+                        <li>@Html.ActionLink("Noticias", "Noticias", "Home")</li>
+                    }
                     <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
 
                 </ul>

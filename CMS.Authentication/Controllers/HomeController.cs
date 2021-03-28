@@ -10,13 +10,13 @@ using System.Web.Mvc;
 
 namespace CMS.Authentication.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : ControllerBase
     {
         public ActionResult Index()
         {
-            var usuario = (Usuario)Session["datacontainer"];
+            PermisosMenu();
 
-            if (usuario == null)
+            if (UsuarioActual == null)
                 return RedirectToAction("Index", "Login");
 
             var config = new MapperConfiguration(cfg =>
@@ -25,16 +25,22 @@ namespace CMS.Authentication.Controllers
                 cfg.CreateMap<Rol, RolViewModel>();
             });
 
-            var modelo = MapService<Usuario, UsuarioViewModel>.Map(config, usuario);
+            var modelo = MapService<Usuario, UsuarioViewModel>.Map(config, UsuarioActual);
             return View(modelo);
         }
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
-
+            PermisosMenu();
             return View();
         }
-       
+
+        public ActionResult Noticias()
+        {
+            PermisosMenu();
+            return View();
+        }
+
+
     }
 }

@@ -73,7 +73,7 @@ namespace CMS.Authentication.DAL.Repositorio
 
         public virtual IQueryable<T> GetAll()
         {
-            return Table;
+            return Table.AsNoTracking();
         }
 
         public virtual T Get(Key id)
@@ -90,13 +90,14 @@ namespace CMS.Authentication.DAL.Repositorio
 
         public virtual T Insert(T entity)
         {
-            return Table.Add(entity);
+            entity =  Table.Add(entity);
             Context.SaveChanges();
+            return entity;
         }
 
         public virtual T Update(T entity)
         {
-            //AttachIfNot(entity);
+            AttachIfNot(entity);
             Context.Entry(entity).State = System.Data.Entity.EntityState.Modified;
             Context.SaveChanges();            
 
@@ -105,7 +106,7 @@ namespace CMS.Authentication.DAL.Repositorio
 
         public virtual void Delete(T entity)
         {
-           // AttachIfNot(entity);
+            AttachIfNot(entity);
             Table.Remove(entity);
         }
 
@@ -119,6 +120,17 @@ namespace CMS.Authentication.DAL.Repositorio
                 );
 
             return Expression.Lambda<Func<T, bool>>(lambdaBody, lambdaParam);
+        }
+
+        protected virtual void AttachIfNot(T entity)
+        {
+            var entry = Context.ChangeTracker.Entries().FirstOrDefault(ent => ent.Entity == entity);
+            if (entry != null)
+            {
+                return;
+            }
+
+            Table.Attach(entity);
         }
 
         #endregion

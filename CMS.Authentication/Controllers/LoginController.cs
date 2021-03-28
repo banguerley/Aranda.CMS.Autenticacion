@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace CMS.Authentication.Controllers
 {
-    public class LoginController : Controller
+    public class LoginController : ControllerBase
     {
         #region Atributos y Propiedades
         private readonly UsuarioManager usuarioManager;
@@ -42,7 +42,7 @@ namespace CMS.Authentication.Controllers
         {
             if (ModelState.IsValid)
             {
-                var usuario = usuarioManager.Get(modelo.Usuario, modelo.Password);
+                var usuario = usuarioManager.Authenticate(modelo.Usuario, modelo.Password);
 
                 if (usuario == null)
                 {
@@ -50,7 +50,7 @@ namespace CMS.Authentication.Controllers
                     return View("Index");
                 }
 
-                Session["datacontainer"] = usuario;
+                UsuarioActual = usuario;
                 return RedirectToAction("Index", "Home");
 
             }

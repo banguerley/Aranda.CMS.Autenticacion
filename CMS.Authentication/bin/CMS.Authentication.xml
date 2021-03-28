@@ -4,5 +4,18 @@
         <name>CMS.Authentication</name>
     </assembly>
     <members>
+        <member name="T:CMS.Authentication.Controllers.ControllerBase">
+            <summary>
+            Clase base de los controladores con la logica para almacenar el usuario logueado  
+            y validación de permisos
+            </summary>
+        </member>
+        <member name="M:CMS.Authentication.Controllers.ControllerBase.TienePermisos(CMS.Authentication.Controllers.PERMISOS)">
+            <summary>
+            Valida si un usuario tiene permisos sobre una función de la aplicación
+            </summary>
+            <param name="permiso"></param>
+            <returns></returns>
+        </member>
     </members>
 </doc>

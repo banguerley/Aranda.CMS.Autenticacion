@@ -27,8 +27,15 @@ namespace CMS.Authentication.Util
         public static List<T2> MapList(object value)
         {
             var config = new AutoMapper.MapperConfiguration(mc => mc.CreateMap<T, T2>());
-            var mapperw = new AutoMapper.Mapper(config);
-            var tMappped = mapperw.Map<List<T>, List<T2>>((List<T>)value);
+            var mapper = new AutoMapper.Mapper(config);
+            var tMappped = mapper.Map<List<T>, List<T2>>((List<T>)value);
+            return tMappped;
+        }
+
+        public static List<T2> MapList(MapperConfiguration config, object value)        {
+           
+            var mapper = new AutoMapper.Mapper(config);
+            var tMappped = mapper.Map<List<T>, List<T2>>((List<T>)value);
             return tMappped;
         }
     }

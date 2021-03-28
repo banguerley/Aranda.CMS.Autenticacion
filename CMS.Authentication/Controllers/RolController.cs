@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace CMS.Authentication.Controllers
 {
-    public class RolController : Controller
+    public class RolController : ControllerBase
     {
         #region Atributos y Propiedades
 
@@ -30,7 +30,12 @@ namespace CMS.Authentication.Controllers
 
         // GET: Rol
         public ActionResult Index()
-        { 
+        {
+            PermisosMenu();
+
+            if (UsuarioActual == null)
+                return RedirectToAction("Index", "Login");
+
             var lista  = MapService<Rol, RolViewModel>.MapList(rolManager.GetAll());
             return View(lista);
         }
